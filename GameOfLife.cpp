@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 ///
 /// @file   GameOfLife.cpp
-/// @brief  Brief description here.
+/// @brief  Implements Conway's Game of Life
 ///
 
 #include "GameOfLife.h"
@@ -149,7 +149,7 @@ std::ostream& operator<<(std::ostream& stream, GameOfLife& game)
     for (int i = 0; i < game.height_; i++)
     {
         for (int j = 0; j < game.width_; j++)
-            stream << (game.getState(i, j) ? "*" : ".");
+            stream << (game.grid_[i][j] ? "*" : ".");
 
         stream << std::endl;
     }
