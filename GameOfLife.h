@@ -8,6 +8,7 @@
 #define GAMEOFLIFE_H
 
 #include <vector>
+#include <ostream>
 
 class GameOfLife
 {
@@ -24,14 +25,18 @@ public:
 
     void nextGeneration();
 
+    friend std::ostream& operator<<(std::ostream& stream, GameOfLife& game);
+
 private:
     int liveNeighbors(int row, int col);
     bool getState(int row, int col);
 
     int width_;
     int height_;
+    int generation_;
     std::vector<std::vector<bool> > grid_;
 };
 
+std::ostream& operator<<(std::ostream& stream, GameOfLife& game);
 
 #endif // GAMEOFLIFE_H

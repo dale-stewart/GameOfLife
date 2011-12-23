@@ -9,7 +9,8 @@ QMAKE_POST_LINK += ./GameOfLife
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    GameOfLifeTest.cpp
+    GameOfLifeTest.cpp \
+    GameOfLife.cpp
 
 LIBS += -L$$(GMOCK_ROOT) -lgmock
 INCLUDEPATH += $$(GMOCK_ROOT)/include
@@ -20,6 +21,17 @@ LIBS += -L$$(GTEST_ROOT) -lgtest
 INCLUDEPATH += $$(GTEST_ROOT)/include
 DEPENDPATH += $$(GTEST_ROOT)/include
 PRE_TARGETDEPS += $$(GTEST_ROOT)/libgtest.a
+
+HEADERS += \
+    GameOfLife.h
+
+OTHER_FILES += \
+    README \
+    .gitignore
+
+
+
+
 
 
 

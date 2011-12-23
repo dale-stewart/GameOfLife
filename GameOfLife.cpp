@@ -9,7 +9,8 @@
 
 GameOfLife::GameOfLife(int width, int height) :
     width_(width),
-    height_(height)
+    height_(height),
+    generation_(1)
 {
     std::vector<bool> row(width_, false);
 
@@ -20,14 +21,18 @@ GameOfLife::GameOfLife(int width, int height) :
 GameOfLife::GameOfLife(const char* start[])
 {
     std::istringstream stream(start[0]);
-    stream >> height_ >> width_;
+    std::string gen;
+    stream >> gen >> generation_;
+
+    std::istringstream stream2(start[1]);
+    stream2 >> height_ >> width_;
 
     std::vector<bool> row(width_, false);
 
     for (int i = 0; i < height_; i++)
     {
         for (int j = 0; j < width_; j++)
-            row[j] = (start[i+1][j] == '*');
+            row[j] = (start[i+2][j] == '*');
 
         grid_.push_back(row);
     }
@@ -136,4 +141,19 @@ bool GameOfLife::getState(int row, int col)
     return state;
 }
 
+std::ostream& operator<<(std::ostream& stream, GameOfLife& game)
+{
+    stream << "Generation " << game.generation_ << ":" << std::endl;
+    stream << game.height_ << " " << game.width_ << std::endl;
+
+    for (int i = 0; i < game.height_; i++)
+    {
+        for (int j = 0; j < game.width_; j++)
+            stream << (game.getState(i, j) ? "*" : ".");
+
+        stream << std::endl;
+    }
+
+    return stream;
+}
 
